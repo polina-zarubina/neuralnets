@@ -56,7 +56,7 @@ class ReLULayer:
         """
         self.mask = X > 0 
         return self.mask * X 
-        #raise Exception("Not implemented!") 
+        #raise Exception("Not implemented!")
 
     def backward(self, d_out: np.array) -> np.array:
         """
@@ -70,7 +70,6 @@ class ReLULayer:
         # TODO: Implement backward pass
         #raise Exception("Not implemented!") 
         return d_out * self.mask 
-
 
     def params(self) -> dict:
         # ReLU Doesn't have any parameters
@@ -90,7 +89,6 @@ class DenseLayer:
         self.X = X 
         Z = np.dot(self.X, self.W.value) + self.B.value 
         return Z 
-
 
     def backward(self, d_out):
         """
@@ -121,6 +119,7 @@ class DenseLayer:
         self.B.grad += np.sum(d_out, axis=0) 
         
         return d_result 
+
 
 
     def params(self):
