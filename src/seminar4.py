@@ -230,7 +230,7 @@ if __name__ == '__main__':
     n_input, n_output, n_hidden = 3072, 10, 256
     learning_rate = 4e-3
     reg = 10
-    num_iters = 500
+    num_iters = 10000
     batch_size = 64
     (x_train, y_train), (x_test, y_test) = get_preprocessed_data(include_bias=False)
     neural_net = NeuralNetwork([DenseLayer(n_input, n_hidden),
