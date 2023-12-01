@@ -24,7 +24,6 @@ class TestAccuracyDemo(unittest.TestCase):
         res = m.result().numpy()
         self.assertEqual(res, 0.5)
 
-
 class TestModelLocal(unittest.TestCase):
     def test_model(self):
         model = tf.keras.models.load_model(PATH_TO_LOCAL_MODEL)
