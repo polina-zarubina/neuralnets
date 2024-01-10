@@ -16,7 +16,7 @@ PATH_TO_DATA_ZIP = 'data/raw/cats_dogs_train.zip'
 PATH_TO_DATA = 'data/raw/cats_dogs_train'
 PATH_TO_MODEL = 'models/model_6'
 BUCKET_NAME = 'neuralnets2023'
-
+# todo fix your git user name and copy .env to project root
 YOUR_GIT_USER = 'polina-zarubina'
 
 
@@ -83,7 +83,7 @@ def make_model(input_shape, num_classes):
 
 def train():
     """Pipeline: Build, train and save model to models/model_6"""
-
+    # Todo: Copy some code from seminar5 and https://keras.io/examples/vision/image_classification_from_scratch/
     print('Training model')
     image_size = (180, 180)
     batch_size = 128
