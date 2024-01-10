@@ -70,8 +70,13 @@ def train():
 
     model = make_model()
     model.summary()
+
     model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy', tf.keras.metrics.Precision()])
     model.fit(sequences_matrix, Y_train, batch_size=256, epochs=15, validation_split=0.2)
+
+    model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall()])
+    model.fit(sequences_matrix, Y_train, batch_size=128, epochs=10, validation_split=0.2)
+
     model.save('models/model_7')
     return tok
 
@@ -80,7 +85,7 @@ def validate(model_path='models/model_7', tokenizer=None) -> tuple:
     """
     Validate model on test subset
     todo fit tokenizer on train texts,
-    todo achieve >0.95 both accuracy and precision
+    todo achieve >0.95 accuracy precision recall
     """
     model = tf.keras.models.load_model(model_path)
     X_test, Y_test = load_data('../data/raw/spam_test.csv')
@@ -88,10 +93,10 @@ def validate(model_path='models/model_7', tokenizer=None) -> tuple:
     test_sequences = tok.texts_to_sequences(X_test)
     test_sequences_matrix = tf.keras.preprocessing.sequence.pad_sequences(test_sequences, maxlen=MAX_SEQ_LEN)
 
-    loss, accuracy, precision = model.evaluate(test_sequences_matrix, Y_test)
-    print(f'Test set\n  Loss: {loss:0.3f}  Accuracy: {accuracy:0.3f}, Precision: {precision:0.3f}')
+    loss, accuracy, precision, recall = model.evaluate(test_sequences_matrix, Y_test)
+    print(f'Test set\n  Loss: {loss:0.3f}  Accuracy: {accuracy:0.3f}, Precision: {precision:0.3f}, Recall: {recall:0.3f}')
 
-    return accuracy, precision
+    return accuracy, precision, recall
 
 
 def upload():
