@@ -112,17 +112,6 @@ def train():
     model.save(PATH_TO_MODEL)
 
 
-    print('Training model')
-    model = make_model()
-    model.fit(
-        train_ds,
-        epochs=epochs,
-        validation_data=val_ds,
-    )
-    model.save(PATH_TO_MODEL)
-
-
-
 def upload():
     """Pipeline: Upload model to S3 storage"""
     print('Upload model')
